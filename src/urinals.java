@@ -9,14 +9,28 @@ import java.util.Scanner;
 
 public class urinals {
     ArrayList<String> input = new ArrayList<>();
-    public String getstring(int a)
+    public String getstring(String line)
     {
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("Enter String");
-//        String line = sc.nextLine();
-//        input.add(line);
-//        System.out.println("Given output:" + input);
-        return "9";
+        int length = line.length();
+        for(int i = 0;i < length-1 ; i++)
+        {
+            char ch = line.charAt(i);
+            char next = line.charAt(i+1);
+            if((ch =='0'&& (next == '0' || next == '1') )|| (ch=='1' && next == '0'))
+            {
+                continue;
+            }
+            else if(!((ch == '0'|| ch == '1') && (next == '0' || next == '1' )))
+            {
+                return "Given String is not a good string";
+            }
+            else
+            {
+                System.out.println("Input is not in a formatted way" + -1);
+            }
+        }
+        input.add(line);
+        return "Given String is a good string";
     }
     public void openFile()
     {
