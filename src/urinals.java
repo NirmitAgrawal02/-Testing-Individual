@@ -9,11 +9,14 @@ import java.util.Scanner;
 
 public class urinals {
     ArrayList<String> input = new ArrayList<>();
-    public void getString()
+    public String getstring(int a)
     {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter String");
-
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Enter String");
+//        String line = sc.nextLine();
+//        input.add(line);
+//        System.out.println("Given output:" + input);
+        return "9";
     }
     public void openFile()
     {
