@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
 
+@SuppressWarnings("ALL")
 public class urinals {
     static ArrayList<String> input = new ArrayList<>();
 
@@ -31,7 +32,7 @@ public class urinals {
             char next = line.charAt(i+1);
             if((ch =='0'&& (next == '0' || next == '1') )|| (ch=='1' && next == '0'))
             {
-                continue;
+
             }
             else if(!((ch == '0'|| ch == '1') && (next == '0' || next == '1' )))
             {
@@ -72,17 +73,16 @@ public class urinals {
     }
     public static String counter(int choice, String file)
     {
+        input.clear();
         int random = 0;
         ArrayList<Integer> cnt = new ArrayList<>();
-        String line = "";
-        String validation = "";
+        String line;
+        String validation;
         if(choice == 1)
         {
             validation = getstring(file);
             if(!validation.equals("Given String is a good string"))
             {
-                cnt.clear();
-                input.clear();
                 return validation;
             }
         }
@@ -91,14 +91,13 @@ public class urinals {
             validation = openFile(file);
             if(!validation.equals("File Exists"))
             {
-                cnt.clear();
-                input.clear();
                 return validation;
             }
             else
             {
 
                 int l = input.size();
+                @SuppressWarnings("all")
                 int j = l;
                 for(int i = 0;i<l;i++)
                 {
@@ -112,48 +111,40 @@ public class urinals {
                 }
             }
         }
-        int length = input.size();
-        for(int i = 0; i<length;i++)
-        {
+        for (String s : input) {
             int count = 0;
-            line = input.get(i);
+            line = s;
             int len = line.length();
             StringBuilder str = new StringBuilder(line);
-            for(int j = 0;j< len; j++)
-            {
-                if(str.equals("-1"))
+            StringBuilder str1 = new StringBuilder("-1");
+            for (int j = 0; j < len; j++) {
+                if (str.equals(str1))
                     cnt.add(-1);
                 char ch = str.charAt(j);
-                if(j == 0)
-                {
-                    char next = str.charAt(j+1);
-                    if(ch == '0' && next == '0')
-                    {
+                if (j == 0) {
+                    char next = str.charAt(j + 1);
+                    if (ch == '0' && next == '0') {
                         count++;
-                        str.setCharAt(j,'1');
+                        str.setCharAt(j, '1');
                     }
-                }
-                 else if (j<len-1) {
+                } else if (j < len - 1) {
                     char next = str.charAt(j + 1);
                     char prev = str.charAt(j - 1);
                     if (ch == '0' && prev == '0' && next == '0') {
                         count++;
                         str.setCharAt(j, '1');
                     }
-                }
-                 else
-                {
+                } else {
                     char prev = str.charAt(j - 1);
-                    if(ch == '0' && prev == '0')
-                    {
+                    if (ch == '0' && prev == '0') {
                         count++;
-                        str.setCharAt(j,'1');
+                        str.setCharAt(j, '1');
                     }
                 }
 
             }
             cnt.add(count);
-            System.out.println(input.get(i));
+            System.out.println(s);
         }
         if(choice == 1)
         {
@@ -197,8 +188,6 @@ public class urinals {
             }
 
         }
-        cnt.clear();
-        input.clear();
         return "-1";
     }
     public static void main(String[] args)
