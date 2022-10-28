@@ -49,14 +49,22 @@ public class urinals {
     {
 
     }
-    public int count(int choice)
+    public int count(int choice, String file)
     {
+        if(choice == 1)
+        {
+            String validation = getstring(file);
+            if(!validation.equals("Given String is a good string"))
+            {
+                return -1;
+            }
+        }
         ArrayList<Integer> cnt = new ArrayList<>();
-        int length = input.size();
+        int length = input.size(),count = 0;
         String line = "";
         for(int i = 0; i<length;i++)
         {
-            int count = 0;
+            count = 0;
             line = input.get(i);
             int len = line.length();
             StringBuilder str = new StringBuilder(line);
@@ -95,7 +103,10 @@ public class urinals {
             cnt.add(count);
         }
         if(choice == 1)
+        {
             System.out.println(cnt);
+            return count;
+        }
             return -1;
     }
 }
