@@ -13,8 +13,8 @@ public class urinals {
     {
         int length = line.length();
         if(length == 0) {
-            System.out.println("Given String does not contain any terminals");
-            return "Given String does not contain any terminals";
+            System.out.println("Given String does not contain any urinals");
+            return "Given String does not contain any urinals";
         }
         else if(length > 20)
         {
