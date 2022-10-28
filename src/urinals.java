@@ -3,12 +3,17 @@ Author - Nirmit Agrawal - nagraw18@asu.edu
 Course - SER 515
 
  */
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
+import java.io.FileWriter;
 
 public class urinals {
     ArrayList<String> input = new ArrayList<>();
+
     public String getstring(String line)
     {
         int length = line.length();
@@ -45,31 +50,70 @@ public class urinals {
         System.out.println("Given String is a good string");
         return "Given String is a good string";
     }
-    public void openFile()
+    public String openFile(String path)
     {
 
-    }
-    public int count(int choice, String file)
-    {
-        if(choice == 1)
-        {
-            String validation = getstring(file);
-            if(!validation.equals("Given String is a good string"))
-            {
-                return -1;
+        try {
+            File file = new File(path);
+            Scanner s = new Scanner(file);
+            while (s.hasNext()) {
+                input.add(s.next());
             }
+            s.close();
+        } catch (FileNotFoundException e) {
+            return "File not found -1";
         }
+        System.out.println("File Exists");
+        return "File Exists";
+    }
+    public String count(int choice, String file)
+    {
         ArrayList<Integer> cnt = new ArrayList<>();
         int length = input.size(),count = 0;
         String line = "";
+        String validation = "";
+        if(choice == 1)
+        {
+            validation = getstring(file);
+            if(!validation.equals("Given String is a good string"))
+            {
+                cnt.add(-1);
+                return "validation";
+            }
+        }
+        if(choice == 2)
+        {
+            validation = openFile(file);
+            if(!validation.equals("File Exists"))
+            {
+                cnt.add(-1);
+                return "validation";
+            }
+            else
+            {
+                int l = input.size();
+                for(int i = 0;i<l;i++)
+                {
+                    String line1 = input.get(i);
+                    validation = getstring(line1);
+                    if(!validation.equals("Given String is a good string"))
+                    {
+                        input.set(i,"-1");
+                    }
+                }
+            }
+        }
         for(int i = 0; i<length;i++)
         {
             count = 0;
+
             line = input.get(i);
             int len = line.length();
             StringBuilder str = new StringBuilder(line);
             for(int j = 0;j< len; j++)
             {
+                if(str.equals("-1"))
+                    cnt.add(-1);
                 char ch = str.charAt(j);
                 if(j == 0)
                 {
@@ -105,8 +149,47 @@ public class urinals {
         if(choice == 1)
         {
             System.out.println(cnt);
-            return count;
+            String ret = "" + cnt.get(0);
+            cnt.clear();
+            return ret;
         }
-            return -1;
+        if(choice == 2)
+        {
+            while(true)
+            {
+                int random = 1;
+                String sc = "\n"+"rule.txt";
+                File f = new File(sc);
+                try {
+                    if(f.createNewFile())
+                    {
+                        FileWriter fw = new FileWriter(sc);
+
+                        for(int i = 0;i<cnt.size();i++)
+                        {
+                            String write = "" + cnt.get(i);
+                            fw.write(write);
+                        }
+                        fw.close();
+                        cnt.clear();
+                        return "File Created and updated";
+                    }
+                    else {
+                        System.out.println("File already exists, Counter incrementing");
+                        sc = sc.substring(0,3) + random +sc.substring(4);
+                        random++;
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+
+        }
+            return "-1";
     }
+    public static void main(String[] args)
+    {
+        System.out.println(System.getProperty("user.dir"));
+            }
 }
