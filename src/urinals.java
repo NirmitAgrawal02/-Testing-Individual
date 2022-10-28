@@ -36,7 +36,8 @@ public class urinals {
             }
             else
             {
-                System.out.println("Input is not in a formatted way" + -1);
+                System.out.println("Input is not in a formatted way - 1");
+                return "Input is not in a formatted way - 1";
             }
         }
         input.add(line);
