@@ -55,13 +55,19 @@ public class urinals {
 
         try {
             File file = new File(path);
+            if(file.exists() && file.length() == 0)
+            {
+                System.out.println("File is Empty -1");
+                return "File is Empty -1";
+            }
             Scanner s = new Scanner(file);
             while (s.hasNext()) {
                 input.add(s.next());
             }
             s.close();
         } catch (FileNotFoundException e) {
-            return "File not found -1";
+            System.out.println("File not Exist -1");
+            return "File not Exist -1";
         }
         System.out.println("File Exists");
         return "File Exists";

@@ -16,8 +16,9 @@ class UrinalsTest {
     @Test
     void openFile() {
         urinals test = new urinals();
-
         assertEquals("File Exists",test.openFile("urinal.dat"), "NIRMIT AGRAWAL,TEST SIX EXECUTED");
+        assertEquals("File not Exist -1",test.openFile("hello.dat"),"NIRMIT AGRAWAL,TEST SEVEN EXECUTED");
+        assertEquals("File is Empty -1",test.openFile("Empty.dat"),"NIRMIT AGRAWAL,TEST EIGHT EXECUTED");
     }
 
     @Test
