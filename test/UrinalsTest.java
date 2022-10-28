@@ -29,5 +29,10 @@ class UrinalsTest {
         assertEquals("0",test.counter(1,"100101"), "NIRMIT AGRAWAL,TEST ELEVEN EXECUTED");
         assertEquals("Input is not in a formatted way - 1",test.counter(1,"101101"), "NIRMIT AGRAWAL,TEST TWELVE EXECUTED");
         assertEquals("1",test.counter(1,"10001001"), "NIRMIT AGRAWAL,TEST THIRTHEEN EXECUTED");
+        assertEquals("File Created and updated",test.counter(2,"urinal.dat"), "NIRMIT AGRAWAL,FOURTEEN SIX EXECUTED");
+        assertEquals("File not Exist -1",test.counter(2,"hello.dat"), "NIRMIT AGRAWAL,FIFTEEN SIX EXECUTED");
+        assertEquals("File is Empty -1",test.counter(2,"Empty.dat"), "NIRMIT AGRAWAL,SIXTEEN SIX EXECUTED");
+        assertEquals("File Created and updated",test.counter(2,"urinal.dat"), "NIRMIT AGRAWAL,SEVENTEEN SIX EXECUTED");
+        assertEquals("File Created and updated",test.counter(2,"urinal.dat"), "NIRMIT AGRAWAL,EIGHTEEN SIX EXECUTED");
     }
 }

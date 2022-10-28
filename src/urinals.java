@@ -74,6 +74,7 @@ public class urinals {
     }
     public String counter(int choice, String file)
     {
+        int random = 0;
         ArrayList<Integer> cnt = new ArrayList<>();
         String line = "";
         String validation = "";
@@ -98,11 +99,14 @@ public class urinals {
             }
             else
             {
+
                 int l = input.size();
+                int j = l;
                 for(int i = 0;i<l;i++)
                 {
                     String line1 = input.get(i);
                     validation = getstring(line1);
+                    input.remove(j);
                     if(!validation.equals("Given String is a good string"))
                     {
                         input.set(i,"-1");
@@ -114,7 +118,6 @@ public class urinals {
         for(int i = 0; i<length;i++)
         {
             int count = 0;
-
             line = input.get(i);
             int len = line.length();
             StringBuilder str = new StringBuilder(line);
@@ -152,6 +155,7 @@ public class urinals {
 
             }
             cnt.add(count);
+            System.out.println(input.get(i));
         }
         if(choice == 1)
         {
@@ -163,10 +167,9 @@ public class urinals {
         }
         if(choice == 2)
         {
+            String sc = "rule.txt";
             while(true)
             {
-                int random = 1;
-                String sc = "\n"+"rule.txt";
                 File f = new File(sc);
                 try {
                     if(f.createNewFile())
@@ -175,18 +178,20 @@ public class urinals {
 
                         for(int i = 0;i<cnt.size();i++)
                         {
-                            String write = "" + cnt.get(i);
+                            String write = "" + cnt.get(i) + "\n";
                             fw.write(write);
                         }
                         fw.close();
                         cnt.clear();
                         input.clear();
+                        System.out.println("File Created and updated");
                         return "File Created and updated";
                     }
                     else {
                         System.out.println("File already exists, Counter incrementing");
-                        sc = sc.substring(0,3) + random +sc.substring(4);
                         random++;
+                        sc = "rule"+ random + ".txt";
+
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
