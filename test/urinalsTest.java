@@ -6,7 +6,10 @@ class urinalsTest {
     @Test
     void getstring() {
         urinals test = new urinals();
-        assertEquals("Given String is a good string",test.getstring("11100"), "====== NIRMIT AGRAWAL == TEST ONE EXECUTED =======");
+        assertEquals("Given String is a good string",test.getstring("00000"), "NIRMIT AGRAWAL,TEST ONE EXECUTED");
+        assertEquals("Length of the given string exceeds the constraints",test.getstring("000001111110000000001"), "NIRMIT AGRAWAL,TEST TWO EXECUTED");
+
+
     }
 
     @Test
