@@ -23,11 +23,11 @@ class UrinalsTest {
 
     @Test
     void count() {
-//        urinals test = new urinals();
-//        assertEquals("3",test.count(1,"00000"), "NIRMIT AGRAWAL,TEST SIX EXECUTED");
-//        assertEquals("0",test.count(1,"10101"), "NIRMIT AGRAWAL,TEST SEVEN EXECUTED");
-//        assertEquals("0",test.count(1,"100101"), "NIRMIT AGRAWAL,TEST EIGHT EXECUTED");
-//        assertEquals("-1",test.count(1,"101101"), "NIRMIT AGRAWAL,TEST NINE EXECUTED");
-//        assertEquals("1",test.count(1,"10001001"), "NIRMIT AGRAWAL,TEST TEN EXECUTED");
+        urinals test = new urinals();
+        assertEquals("3",test.counter(1,"00000"), "NIRMIT AGRAWAL,TEST NINE EXECUTED");
+        assertEquals("0",test.counter(1,"10101"), "NIRMIT AGRAWAL,TEST TEN EXECUTED");
+        assertEquals("0",test.counter(1,"100101"), "NIRMIT AGRAWAL,TEST ELEVEN EXECUTED");
+        assertEquals("Input is not in a formatted way - 1",test.counter(1,"101101"), "NIRMIT AGRAWAL,TEST TWELVE EXECUTED");
+        assertEquals("1",test.counter(1,"10001001"), "NIRMIT AGRAWAL,TEST THIRTHEEN EXECUTED");
     }
 }

@@ -46,7 +46,7 @@ public class urinals {
             }
         }
         input.add(line);
-//        int cnt = count(1);
+//        int cnt = counter(1);
         System.out.println("Given String is a good string");
         return "Given String is a good string";
     }
@@ -72,10 +72,9 @@ public class urinals {
         System.out.println("File Exists");
         return "File Exists";
     }
-    public String count(int choice, String file)
+    public String counter(int choice, String file)
     {
         ArrayList<Integer> cnt = new ArrayList<>();
-        int length = input.size(),count = 0;
         String line = "";
         String validation = "";
         if(choice == 1)
@@ -83,8 +82,9 @@ public class urinals {
             validation = getstring(file);
             if(!validation.equals("Given String is a good string"))
             {
-                cnt.add(-1);
-                return "validation";
+                cnt.clear();
+                input.clear();
+                return validation;
             }
         }
         if(choice == 2)
@@ -92,8 +92,9 @@ public class urinals {
             validation = openFile(file);
             if(!validation.equals("File Exists"))
             {
-                cnt.add(-1);
-                return "validation";
+                cnt.clear();
+                input.clear();
+                return validation;
             }
             else
             {
@@ -109,9 +110,10 @@ public class urinals {
                 }
             }
         }
+        int length = input.size();
         for(int i = 0; i<length;i++)
         {
-            count = 0;
+            int count = 0;
 
             line = input.get(i);
             int len = line.length();
@@ -146,17 +148,17 @@ public class urinals {
                         count++;
                         str.setCharAt(j,'1');
                     }
-
-
                 }
+
             }
             cnt.add(count);
         }
         if(choice == 1)
         {
-            System.out.println(cnt);
+            System.out.println("Free Urinals = "+ cnt);
             String ret = "" + cnt.get(0);
             cnt.clear();
+            input.clear();
             return ret;
         }
         if(choice == 2)
@@ -178,6 +180,7 @@ public class urinals {
                         }
                         fw.close();
                         cnt.clear();
+                        input.clear();
                         return "File Created and updated";
                     }
                     else {
@@ -192,7 +195,9 @@ public class urinals {
             }
 
         }
-            return "-1";
+        cnt.clear();
+        input.clear();
+        return "-1";
     }
     public static void main(String[] args)
     {
