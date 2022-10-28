@@ -8,13 +8,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Random;
 import java.io.FileWriter;
 
 public class urinals {
-    ArrayList<String> input = new ArrayList<>();
+    static ArrayList<String> input = new ArrayList<>();
 
-    public String getstring(String line)
+    public static String getstring(String line)
     {
         int length = line.length();
         if(length == 0) {
@@ -46,11 +45,10 @@ public class urinals {
             }
         }
         input.add(line);
-//        int cnt = counter(1);
         System.out.println("Given String is a good string");
         return "Given String is a good string";
     }
-    public String openFile(String path)
+    public static String openFile(String path)
     {
 
         try {
@@ -72,7 +70,7 @@ public class urinals {
         System.out.println("File Exists");
         return "File Exists";
     }
-    public String counter(int choice, String file)
+    public static String counter(int choice, String file)
     {
         int random = 0;
         ArrayList<Integer> cnt = new ArrayList<>();
@@ -135,7 +133,7 @@ public class urinals {
                         str.setCharAt(j,'1');
                     }
                 }
-                 else if (j > 0 && j<len-1) {
+                 else if (j<len-1) {
                     char next = str.charAt(j + 1);
                     char prev = str.charAt(j - 1);
                     if (ch == '0' && prev == '0' && next == '0') {
@@ -176,9 +174,8 @@ public class urinals {
                     {
                         FileWriter fw = new FileWriter(sc);
 
-                        for(int i = 0;i<cnt.size();i++)
-                        {
-                            String write = "" + cnt.get(i) + "\n";
+                        for (Integer integer : cnt) {
+                            String write = "" + integer + "\n";
                             fw.write(write);
                         }
                         fw.close();
@@ -206,6 +203,25 @@ public class urinals {
     }
     public static void main(String[] args)
     {
-        System.out.println(System.getProperty("user.dir"));
+        int choice;
+        String line = "";
+        Scanner sc = new Scanner(System.in);
+        Scanner sc2 = new Scanner(System.in);
+        System.out.println("Enter Your Choice");
+        System.out.println("1. Enter String through Terminal");
+        System.out.println("2. Enter File name");
+        choice = sc.nextInt();
+        if(choice == 1)
+        {
+            System.out.println("Enter String Name");
+            line = sc2.nextLine();
+        }
+        else if(choice == 2)
+        {
+            System.out.println("Enter File Path");
+            line = sc2.nextLine();
+        }
+        counter(choice,line);
+
             }
 }
